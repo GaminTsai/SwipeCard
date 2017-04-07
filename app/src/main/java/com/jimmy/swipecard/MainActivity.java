@@ -2,7 +2,9 @@ package com.jimmy.swipecard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.google.gson.Gson;
 
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new SwipeCardLayoutManager());
+//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+
+
+
         SwipeCardAdapter adapter = new SwipeCardAdapter(this);
 
         WelfareBean bean = initDemoData();
