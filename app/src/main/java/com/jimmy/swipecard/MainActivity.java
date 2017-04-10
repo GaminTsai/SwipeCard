@@ -2,9 +2,9 @@ package com.jimmy.swipecard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.google.gson.Gson;
 
@@ -17,17 +17,23 @@ public class MainActivity extends AppCompatActivity {
         CardConfig.initConfig(this);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new SwipeCardLayoutManager());
-//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
-
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         SwipeCardAdapter adapter = new SwipeCardAdapter(this);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new SwipeCardLayoutManager());
+//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
         WelfareBean bean = initDemoData();
         adapter.addAll(bean.getResults());
 
-        recyclerView.setAdapter(adapter);
+        ItemTouchHelper.Callback callback = new SwipeCardCallBack(recyclerView, adapter, adapter.getDatas());
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+
+
     }
 
     private WelfareBean initDemoData() {
