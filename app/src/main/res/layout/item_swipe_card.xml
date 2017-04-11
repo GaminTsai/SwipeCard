@@ -5,10 +5,14 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_centerInParent="true"
-        android:padding="5dp"
-        android:background="@color/cardview_dark_background">
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_dark_background">
 
         <ImageView
             android:id="@+id/show_image"
@@ -17,6 +21,7 @@
 
         <TextView
             android:id="@+id/desc_tv"
+            android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -25,9 +30,11 @@
         <TextView
             android:id="@+id/who_tv"
             android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 </RelativeLayout>
